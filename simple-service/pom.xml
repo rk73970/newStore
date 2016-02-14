@@ -36,19 +36,30 @@
 		  <artifactId>jackson-jaxrs-json-provider</artifactId>
 		  <version>2.2.3</version>
 		</dependency>
+		<dependency>
+	        <groupId>com.owlike</groupId>
+	        <artifactId>genson</artifactId>
+	        <version>0.99</version>
+	    </dependency>
 		-->
-		
 		<dependency>
 			<groupId>net.sourceforge.javacsv</groupId>
 			<artifactId>javacsv</artifactId>
 			<version>2.0</version>
 		</dependency>
 
-        <!-- uncomment this to get JSON support: -->
-         <dependency>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-moxy</artifactId>
-        </dependency>
+        <!-- uncomment this to get JSON support: 
+        -->
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>2.22.1</version>
+		</dependency>
+
         <dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache-core</artifactId>
@@ -74,7 +85,8 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.underdog.jersey.grizzly.Main</mainClass>
+							<addClasspath>true</addClasspath>
+                            <mainClass>com.example.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -89,14 +101,39 @@
                 </executions>
             </plugin>
             <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>2.8</version>
+            <executions>
+                <execution>
+                    <id>copy-dependencies</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>copy-dependencies</goal>
+                    </goals>
+                    <configuration>
+                        <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                        <overWriteReleases>false</overWriteReleases>
+                        <overWriteSnapshots>false</overWriteSnapshots>
+                        <overWriteIfNewer>true</overWriteIfNewer>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-                <inherited>true</inherited>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
+                <artifactId>maven-jar-plugin</artifactId>
+            <version>2.4</version>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <addClasspath>true</addClasspath>
+                        <classpathPrefix>lib/</classpathPrefix>
+                        <mainClass>com.example.Main</mainClass>
+                        <useUniqueVersions>false</useUniqueVersions>
+                    </manifest>
+                </archive>
+            </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
