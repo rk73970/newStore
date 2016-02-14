@@ -1,0 +1,24 @@
+Server Start up instructions:------------
+1. Copy simple-service-1.0-SNAPSHOT-jar-with-dependencies.jar from  https://github.com/rk73970/newStore/blob/dff97d3009caaab82889113181b4ccb8edde6209/simple-service/runconfigurations/simple-service-1.0-SNAPSHOT-jar-with-dependencies.jar
+
+2. Execute "java -jar simple-service-1.0-SNAPSHOT-jar-with-dependencies.jar" to start the server
+
+APIs
+1. Search by store id:
+E.g.
+http://localhost:8080/myapp/myresource/storeid/1525eec4-7bed-4597-bf5a-e06fcede5f4f
+
+2. Sort City by store opendate
+E.g
+http://localhost:8080/myapp/myresource/city/byopendate
+
+3. Sort city by name
+E.g
+http://localhost:8080/myapp/myresource/city/byname
+
+4. List all stores:
+E.g
+http://localhost:8080/myapp/myresource/stores
+
+5. Create store dummy:
+http://localhost:8080/myapp/myresource/createstore
