@@ -2,6 +2,9 @@ package com.example.pojo;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Store {
 	
 	private String storeID;
@@ -10,6 +13,8 @@ public class Store {
 	private String address;
 	private Date opendate;
 	private long opendays;
+	
+	public Store(){}
 	public long getOpendays() {
 		return opendays;
 	}
@@ -47,5 +52,36 @@ public class Store {
 		this.opendate = opendate;
 	}
 	
+	@Override
+	public boolean equals(Object o){
+	    if(o == null){
+	    	return false;
+	    }
+	    if(!(o instanceof Store))
+    	{
+	    	return false;
+    	}
+
+	    Store other = (Store) o;
+	    if(this.storeID != other.storeID){
+	    	return false;
+	    }
+	    if(! this.postCode.equals(other.postCode)){
+	    	return false;
+	    }
+	    if(!(this.opendays == other.opendays)){
+	    	return false;
+	    }
+
+	    return true;
+	  }
+	
+	@Override
+	public int hashCode() {
+		int hash = 3;
+		hash = 7 * hash + this.storeID.hashCode();
+		hash = 7 * hash + this.postCode.hashCode();
+		return hash;
+	}
 
 }
