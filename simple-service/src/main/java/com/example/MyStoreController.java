@@ -63,7 +63,7 @@ public class MyStoreController {
     @POST
     @Path("/createstore")
     @Produces (MediaType.APPLICATION_JSON)
-    public Response createNewStore(){
+    public Response createNewStore(Store store){
     	return Response.status(Response.Status.CREATED).entity("Congratulations. New store created.").build();
     	
 	}

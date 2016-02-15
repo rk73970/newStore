@@ -30,17 +30,12 @@ public class StoreCache {
 		Cache memoryOnlyCache = new Cache("mystorecache", 10000, false, false, oneHr, oneHr);
 		cacheManager.addCache(memoryOnlyCache);
 		}
-		System.out.println("-------------- >>" + cacheManager.getCache("mystorecache"));
-//		if (cacheManager != null)
-//		{
-//		  Set<String> cacheNames = new HashSet<String>(Arrays.asList(cacheManager.getCacheNames()));
-//		  System.out.println("cacheNames: " + cacheNames);
-//		  for(String cName: cacheNames)
-//		  {
-//		   System.out.println("Cache: "+cacheManager.getEhcache(cName));
-//		  }
-//		}
 		return cacheManager.getCache("mystorecache");
+    }
+	
+	public static void shutDownCache()
+    {
+		cacheManager.shutdown();
     }
 	private static Cache getCache()
     {
@@ -59,7 +54,7 @@ public class StoreCache {
 				{
 					String storeId = csvReader.get("Store Id");
 						//System.out.println("storeId  : ------------"+storeId);
-						System.out.println("storeId :>>>"+storeId);
+						//System.out.println("storeId :>>>"+storeId);
 						String city = csvReader.get("City");
 						String postCode = csvReader.get("Post Code");
 						String address = csvReader.get("Address");
@@ -77,6 +72,7 @@ public class StoreCache {
 						}
 						memoryOnlyCache.put(new Element(storeId,store));
 				}
+				csvReader.close();
 			}
 				return memoryOnlyCache;
 		}catch (Exception e) {
@@ -94,7 +90,7 @@ public class StoreCache {
 		{
 			for (Object key: cache.getKeys()) {
 			    Element element = cache.get(key);
-			    System.out.println( "------------------------  :"   +((Store)element.getObjectValue()).getStoreID());
+			   // System.out.println( "------------------------  :"   +((Store)element.getObjectValue()).getStoreID());
 			    storeList.add((Store)element.getObjectValue());
 			  }
 		}

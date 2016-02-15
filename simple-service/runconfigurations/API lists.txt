@@ -1,12 +1,7 @@
 Server Start up instructions:------------
-1. Copy simple-service-1.0-SNAPSHOT-jar-with-dependencies.jar from  https://github.com/rk73970/newStore/tree/master/simple-service/target
-
-2. Execute "java -jar simple-service-1.0-SNAPSHOT-jar-with-dependencies.jar" to start the server.
-
- or
- 
 1. Execute "mvn exec:java" from simple-service folder to start server. 
 ------------------------------------------------------------
+
 API List -----------------------------
 1. Search by store id:
 E.g.
